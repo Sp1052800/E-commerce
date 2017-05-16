@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'auth/:provider/callback', to: 'users#facebook'
+  #get 'auth/failure', to: redirect('/')
+  #get 'signout', to: 'users#destroy', as: 'signout'
+  resources :products
 	namespace :api do 
 		resources :users
 	end
@@ -9,7 +13,7 @@ Rails.application.routes.draw do
        delete 'logout'
   	end
   end
-  root to: "users#index" 
+  root to: "products#index" 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

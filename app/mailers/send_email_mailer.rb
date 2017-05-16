@@ -6,8 +6,7 @@ class SendEmailMailer < ApplicationMailer
   #   en.send_email_mailer.welcome.subject
   #
   def welcome(user)
-    @user = user
-
-    mail (to: user.email, subject: "Welcome to ROR")
-  end
+		@user = user
+		mail(to:user.emailid, subject: "welcome to our ruby on rails world")
+	end
 end

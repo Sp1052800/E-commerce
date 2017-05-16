@@ -1,0 +1,43 @@
+<% if user_signed_in?%>
+  <%= link_to "Logout", logout_users_path, method: :delete%>
+ |<%= link_to "Add Product", new_product_path if can? :create, @products %>
+  <%=link_to "CSV",products_path(format: :csv)%><br>
+  <%=link_to "JSON",products_path(format: :json)%>
+<%end%>
+<div class="container">
+<table class="table table-striped">
+	<tr>
+	    <th>Images</th>
+		<th>Name</th>
+		<th>Brand</th>
+		<th>Price</th>
+		<th>Size</th>								
+	</tr>
+   <% @product.each do | i | %>
+	  <tr>  
+         <td>
+	       <% unless i.images.blank? %>
+	           <% i.images.each do | image |%>
+                   <%= image_tag image.photo(:thumb)%>
+	           <%end%>
+	        <%end%>
+	     </td>
+	     <td><%= i.brand %></td>
+       
+        <td><%= i.name %></td>
+        
+        <td><%= i.price %></td>
+        <td><%= i.size %></td>
+        <%if user_signed_in?%>
+        <td><%= link_to "delete" ,i, method: :delete if can? :delete,@products%>
+        <td><%=link_to "update",edit_product_path(i) if can? :update,@products%></td>
+        <%end%>
+        <%end%>
+
+  
+       </tr>
+       </table>
+       </div>
+
+       
+    

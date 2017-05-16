@@ -1,0 +1,44 @@
+<%= form_for @user do |f|%>
+<% if @user.errors.any? %>
+<% @user.errors.messages.each do |key,msg|%>
+<ul>
+<li><%= "#{key} : " +msg.first%></li>
+</ul>
+<%end%>
+<%end%>
+<p>
+	<%=f.label :name%>
+	<%= f.text_field :name%>
+</p>
+<p>
+	<%= f.label :email%>
+	<%= f.email_field :email%>
+</p>
+<p>
+	<%= f.label :password%>
+	<%= f.password_field :password%>
+</p>
+<p>
+	<%= f.label :confirmpassword%>
+	<%= f.password_field :confirmpassword%>
+</p>
+<p>
+    <%= f.label :mobile%>
+    <%= f.text_field :mobile%>
+</p>
+<p>
+	<%= f.label :address %> 
+	<%= f.text_area :address,:cols => "39",:rows=> "7"%>
+</p>
+
+<%= f.fields_for :image do | i |%>
+     <%= i.label :photo%>
+     <%= i.file_field :photo%>
+   <%end%>
+
+<%= f.submit  "signup"%>
+
+
+<% end %>
+<hr><hr>
+<%=link_to "<<back",users_path%>
